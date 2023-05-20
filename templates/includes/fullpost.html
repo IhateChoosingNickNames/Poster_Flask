@@ -1,0 +1,38 @@
+<!-- templates/posts/includes/fullpost.html -->
+
+
+<h2>
+    {{ post.title }}
+</h2>
+<ul>
+
+  {% if not no_author %}
+      <li>
+        <h3>Автор: {{ post.author }}</h3>
+      </li>
+  {% endif %}
+
+  <li>
+    <p>Дата публикации: {{ post.created.strftime('%Y-%m-%d') }}</p>
+  </li>
+</ul>
+<p>
+  {{ post.text|truncate(50, True) }}
+</p>
+
+
+
+<p>
+    <a href="{{ url_for('show_post', post_id=post.id) }}"> Читать полностью </a>
+</p>
+
+{% if not group %}
+    {% if post.group%}
+      <p>
+        <a href="{{ url_for('posts_group_list') }}"> Все записи группы {{ post.group.slug }} </a>
+      </p>
+        <p>Группа: {{ post.group }}</p>
+    {% else %}
+      <p> Группа отсутствует </p>
+    {% endif %}
+{% endif %}
