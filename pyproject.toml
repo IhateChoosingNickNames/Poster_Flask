@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "yatube-flask"
+version = "0.1.0"
+description = ""
+authors = ["Ларькин Михаил <jetpilot314@gmail.com>"]
+readme = "README.md"
+
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.2"
+python-dotenv = "^1.0.0"
+flask-wtf = "^1.1.1"
+flask-login = "^0.6.2"
+flask-sqlalchemy = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
