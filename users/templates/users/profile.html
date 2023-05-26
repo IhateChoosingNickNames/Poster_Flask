@@ -9,21 +9,21 @@
 {% block content %}
 
     <div class="mb-5">
-      <h1>Все посты пользователя {{ object.get_full_name }}</h1>
-      <h3>Всего постов: {{ object.posts.count }}</h3>
+      <h1>Все посты пользователя {{ user.username }}</h1>
+      <h3>Всего постов: {{ 0 }}</h3>
 
-      {% if request.user.is_authenticated and not self %}
+      {% if is_authenticated and not self %}
           {% if following %}
             <a
               class="btn btn-lg btn-light"
-              href="{% url 'posts:profile_unfollow' object.username %}" role="button"
+              href="#" role="button"
             >
               Отписаться
             </a>
           {% else %}
                   <a
                     class="btn btn-lg btn-primary"
-                    href="{% url 'posts:profile_follow' object.username %}" role="button"
+                    href="#" role="button"
                   >
                     Подписаться
                   </a>
@@ -36,11 +36,11 @@
       {% for post in object_list %}
         <article>
 
-          {% include 'includes/fullpost.html' with no_author=True %}
+          {% include 'includes/fullpost.html' %}
 
         </article>
 
-          {% if not forloop.last %}
+          {% if not loop.last %}
             <hr>
           {% endif %}
 

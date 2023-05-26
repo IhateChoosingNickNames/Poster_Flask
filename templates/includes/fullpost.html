@@ -23,13 +23,13 @@
 
 
 <p>
-    <a href="{{ url_for('show_post', post_id=post.id) }}"> Читать полностью </a>
+    <a href="{{ url_for('posts.show_post', post_slug=post.slug) }}"> Читать полностью </a>
 </p>
 
 {% if not group %}
     {% if post.group%}
       <p>
-        <a href="{{ url_for('posts_group_list') }}"> Все записи группы {{ post.group.slug }} </a>
+        <a href="{{ url_for('posts.posts_group_list') }}"> Все записи группы {{ post.group.slug }} </a>
       </p>
         <p>Группа: {{ post.group }}</p>
     {% else %}

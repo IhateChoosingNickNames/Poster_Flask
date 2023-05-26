@@ -1,16 +1,11 @@
-from settings import app
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, IntegerField, SubmitField
-from wtforms.validators import DataRequired, Email
+from wtforms import StringField, TextAreaField, SelectField
+from wtforms.validators import DataRequired
+
+from models import Group
 
 
 class PostCreateForm(FlaskForm):
     title = StringField("Название", validators=[DataRequired()])
     text = TextAreaField("Описание", validators=[DataRequired()])
-    group = IntegerField("Группа")
-
-
-class FeedbackForm(FlaskForm):
-    text = StringField("Описание", validators=[DataRequired()])
-    email = TextAreaField("Почта", validators=[Email("Введите корректную почту")])
-    submit = SubmitField("Отправить")
+    group = SelectField("Группа", choices=[elem.slug for elem in Group.query.all()])

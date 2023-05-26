@@ -1,18 +1,18 @@
 <!-- templates/posts/includes/header.html -->
 
 
-
   <nav class="navbar navbar-light" style="background-color: lightskyblue">
-    <div class="container">
-      <a class="navbar-brand" href="{{ url_for('index') }}">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{ url_for('posts.index') }}">
         <img src="{{ url_for('static', filename='img/logo.png') }}" width="30" height="30" class="d-inline-block align-top" alt="">
         <span style="color:red">Ya</span>tube
       </a>
+
       <ul class="nav nav-pills">
 
         <li class="nav-item">
           <a class="nav-link {% if view_name  == 'posts:feedback' %}active{% endif %}"
-             href="{{ url_for('feedback') }}">Обратная связь</a>
+             href="{{ url_for('core.feedback') }}">Обратная связь</a>
         </li>
 
         <li class="nav-item">
@@ -28,40 +28,41 @@
 
         <li class="nav-item">
           <a class="nav-link {% if view_name  == 'posts:post_create' %}active{% endif %}"
-             href="{{ url_for('post_create') }}">Новая запись</a>
+             href="{{ url_for('posts.post_create') }}">Новая запись</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link {% if view_name  == 'posts:show_follows' %}active{% endif %}"
-             href="{{ url_for('show_follows') }}">Моя лента</a>
+             href="{{ url_for('users.show_follows') }}">Моя лента</a>
         </li>
-
-        <li class="nav-item">
-          <a class="nav-link link-light {% if view_name  == 'users:password_change_form' %}active{% endif %}"
-             href="{{ url_for('users_password_change_form') }}">Изменить пароль</a>
-        </li>
-
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </ul>
+      <ul class="nav nav-pills">
         <li class="nav-item">
           <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}"
-             href="{{ url_for('users_logout') }}">Выйти</a>
+             href="{{ url_for('users.users_logout') }}">Выйти</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link link-light {% if view_name  == 'posts:show_profile' %}active{% endif %}"
-             href="{{ url_for('show_profile') }}">{{ request.user }}</a>
+             href="{{ url_for('users.show_profile', user_slug=1) }}">Текущий юзер</a>
         </li>
 
 
         <li class="nav-item">
-          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href="{{ url_for('users_login') }}">Войти</a>
+          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href="{{ url_for('users.users_login') }}">Войти</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{{ url_for('users_signup') }}">Регистрация</a>
+          <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{{ url_for('users.users_signup') }}">Регистрация</a>
         </li>
 
 
       </ul>
+
     </div>
   </nav>
 
