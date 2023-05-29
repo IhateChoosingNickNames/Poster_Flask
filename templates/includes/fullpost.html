@@ -16,10 +16,16 @@
     <p>Дата публикации: {{ post.created.strftime('%Y-%m-%d') }}</p>
   </li>
 </ul>
-<p>
-  {{ post.text|truncate(50, True) }}
-</p>
-
+<div class="tags">
+    {% for tag in post.tags %}
+        <a class="btn btn-primary" href="{{ url_for('posts.post_tag', tag_slug=tag.slug) }}" role="button">{{ tag.title }}</a>
+    {% endfor %}
+</div>
+<div class="main-content">
+    <p>
+      {{ post.text|truncate(50, True) }}
+    </p>
+</div>
 
 
 <p>
@@ -29,7 +35,7 @@
 {% if not group %}
     {% if post.group%}
       <p>
-        <a href="{{ url_for('posts.posts_group_list') }}"> Все записи группы {{ post.group.slug }} </a>
+        <a href="{{ url_for('posts.post_group', group_slug=post.group.slug) }}"> Все записи группы {{ post.group.slug }} </a>
       </p>
         <p>Группа: {{ post.group }}</p>
     {% else %}

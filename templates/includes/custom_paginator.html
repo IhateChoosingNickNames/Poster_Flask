@@ -1,17 +1,18 @@
 <!-- templates/includes/custom_paginator.html -->
 
-{% if page_obj.paginator.num_pages != 1 %}
+{% if page_obj.iter_pages != 1 %}
     <nav aria-label="Page navigation" class="my-5">
         <ul class="pagination">
-            {% if page_obj.has_previous %}
+            {% if page_obj.has_prev %}
                 <li class="page-item"><a class="page-link" href="?page=1">Первая</a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.prev_num }}">
                       Предыдущая
                     </a></li>
             {% endif %}
-            {% if page_obj.has_other_pages %}
-                {% for p in page_obj.paginator.page_range %}
-                    {% if p == page_obj.number %}
+
+
+                {% for p in page_obj.iter_pages() %}
+                    {% if p == page_obj.page %}
                       <li class="page-item active">
                         <span class="page-link">{{ p }}</span>
                       </li>
@@ -19,12 +20,12 @@
                         <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a> </li>
                     {% endif %}
                 {% endfor %}
-            {% endif %}
+
             {% if page_obj.has_next %}
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_num }}">
                     Следующая
                 </a></li>
-                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.pages }}">
                     Последняя
                 </a></li>
             {% endif %}

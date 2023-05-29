@@ -27,7 +27,7 @@
               {% for field in form if field.name not in ['csrf_token', 'submit'] -%}
                 <div class="form-group row my-3" aria-required="true">
                   <label>
-                    {{ field.label() }}
+                    {{ field.label(class='control-label') }}
                         <span class="required text-danger">*</span>
                   </label>
                   <div>
@@ -37,7 +37,7 @@
                         {{ e }}
                       {% endfor %}
                     {% else %}
-                      {{ field() }}
+                      {{ field(class='form-control') }}
                     {% endif %}
                   </div>
                 </div>

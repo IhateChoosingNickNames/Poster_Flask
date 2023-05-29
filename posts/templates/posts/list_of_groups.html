@@ -16,13 +16,13 @@
               {{ group }}
           </h4>
           <h5>
-              <a href="{% url 'posts:group_archive' group.slug %}"> Архив группы </a>
+              <a href="{{ url_for('posts.post_group', group_slug=group.slug) }}"> Архив группы </a>
           </h5>
         </li>
       {% endfor %}
     </ol>
       <p>
-        <a href="{% url 'posts:index' %}"> Возврат на главную страницу </a>
+        <a href="{{ url_for('posts.index') }}"> Возврат на главную страницу </a>
       </p>
 
 {% endblock %}

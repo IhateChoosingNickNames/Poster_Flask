@@ -35,31 +35,34 @@
           <a class="nav-link {% if view_name  == 'posts:show_follows' %}active{% endif %}"
              href="{{ url_for('users.show_follows') }}">Моя лента</a>
         </li>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex" role="search" method="GET">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="q" value="{{ request.args.get('q', '') }}">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </ul>
       <ul class="nav nav-pills">
         <li class="nav-item">
           <a class="nav-link link-light {% if view_name  == 'users:logout' %}active{% endif %}"
-             href="{{ url_for('users.users_logout') }}">Выйти</a>
+             href="{{ url_for('security.logout') }}">Выйти</a>
         </li>
-
+        {% if current_user.has_role('admin') or current_user.is_superuser %}
+          <li class="nav-item">
+            <a class="nav-link link-light active" href="/admin">Админка</a>
+          </li>
+        {% elif current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link link-light {% if view_name  == 'posts:show_profile' %}active{% endif %}"
              href="{{ url_for('users.show_profile', user_slug=1) }}">Текущий юзер</a>
         </li>
-
+        {% endif %}
 
         <li class="nav-item">
-          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href="{{ url_for('users.users_login') }}">Войти</a>
+          <a class="nav-link link-light {% if view_name  == 'users:login' %}active{% endif %}" href="{{ url_for('security.login') }}">Войти</a>
         </li>
 
         <li class="nav-item">
           <a class="nav-link link-light {% if view_name  == 'users:signup' %}active{% endif %}" href="{{ url_for('users.users_signup') }}">Регистрация</a>
         </li>
-
 
       </ul>
 

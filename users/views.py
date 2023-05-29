@@ -5,10 +5,11 @@ from core.forms import FeedbackForm
 
 from posts.forms import PostCreateForm
 from models import Post, Group, User
+from flask_security import login_required
 
-
-
+@login_required
 def show_profile(user_slug):
+    # TODO После добавления авторизации перейти на слаг и подпраивить шаблоны
     user = User.query.filter_by(id=user_slug).first()
     context = {
         "user": user,

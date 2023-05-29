@@ -1,0 +1,7 @@
+{%- with messages = get_flashed_messages(with_categories=true) -%}
+  {% if messages %}
+    <div class="offset-3 col-md-6 flashes">
+      {% for category, message in messages %}<li class="alert alert-{{ category }} fs-error-msg">{{ message }}</li>{% endfor %}
+    </div>
+  {% endif %}
+{%- endwith %}
